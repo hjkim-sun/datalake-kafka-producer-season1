@@ -12,7 +12,7 @@ class SimpleProducer:
         self.duration = duration if duration is not None else 60
         self.conf = {'bootstrap.servers': BROKER_LST}
 
-        self.producer = Producer(**self.conf)
+        self.producer = Producer(self.conf)
 
     # Optional per-message delivery callback (triggered by poll() or flush())
     # when a message has been successfully delivered or permanently
