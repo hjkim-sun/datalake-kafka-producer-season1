@@ -30,3 +30,8 @@ hooks:
     - location: deploy/after_install.sh
       timeout: 120
       runas: kafka
+
+  ApplicationStart:
+    - location: deploy/application_start.sh
+      timeout: 60
+      runas: root
