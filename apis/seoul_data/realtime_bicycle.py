@@ -76,13 +76,17 @@ class RealtimeBicycle:
         os.makedirs(self.log_dir, exist_ok=True)
 
     def _get_logger(self):
+        default_format = '%(asctime)s [%(levelname)s]:%(message)s'
         logging.basicConfig(
-            format='%(asctime)s [%(levelname)s]:%(message)s',
+            format=default_format,
             level=logging.INFO,
             datefmt='%Y-%m-%d %H:%M:%S'
         )
+        formatter = logging.Formatter(default_format)
         handler = TimedRotatingFileHandler(os.path.join(self.log_dir, 'call_bicycle_api.log'), when="midnight", backupCount=7)
         handler.suffix = "%Y-%m-%d"
+        handler.setFormatter(formatter)
+
         logger = logging.getLogger(__name__)
         logger.addHandler(handler)
 
@@ -91,3 +95,4 @@ class RealtimeBicycle:
 
 real_bicycle = RealtimeBicycle(dataset_nm='bikeList')
 items = real_bicycle.call()
+print(items[0:10])
