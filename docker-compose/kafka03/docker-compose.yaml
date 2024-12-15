@@ -11,7 +11,7 @@ services:
       - kpg_network
 
   prometheus:
-    image: prom/prometheus:2.46.0
+    image: prom/prometheus
     container_name: prometheus
     restart: always
     user: 1001:1000
